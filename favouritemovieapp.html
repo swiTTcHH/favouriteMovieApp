@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="maincontainer">
-      <label for="add">What would you like to do</label>
+      <h1 for="add">What would you like to do</h1>
       <div>
         <label for="add">Add Movie</label>
         <input type="radio" name="chkr" id="add" value="add" />
@@ -43,14 +43,24 @@
       const formOverlay = document.querySelector(".formoverlay");
       const form = document.querySelector(".formcontainer");
       let add_ExitBtn = document.querySelector(".toggle");
-      let buttt = document.querySelector(".list_maker");
+      let subBtn = document.querySelector(".list_maker");
       let Selector = document.querySelector(".maincontainer");
-
+      const inp = document.querySelectorAll("input")
+      
       add_ExitBtn.addEventListener("click", () => {
         add_ExitBtn.classList.remove("active");
         Selector.classList.remove("active");
         form.classList.add("active");
       });
+      
+      let lst = []
+      subBtn.addEventListener("click", () => {
+      inp.forEach((input) =>{
+        console.log(inp.value)
+      })
+      // console.log(inp.value)
+         // lst.append(inp.value)
+      })
       
       let selected = () => {
         let sel = document.querySelector("input[name = 'chkr']:checked").value;
