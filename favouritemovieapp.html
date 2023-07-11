@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourite Movie App</title>
+    <link rel="stylesheet" href="favourtiemovieapp.css" />
+  </head>
+  <body>
+    <div class="maincontainer">
+      <label for="add">What would you like to do</label>
+      <div>
+        <label for="add">Add Movie</label>
+        <input type="radio" name="chkr" id="add" value="add" />
+        <label for="view">View Movies</label>
+        <input type="radio" name="chkr" id="view" value="view" />
+        <label for="find">Find a movie</label>
+        <input type="radio" name="chkr" id="find" value="find" />
+      </div>
+    </div>
+
+    <div class="formcontainer active">
+      <div class="formoverlay">
+        <div class="toggle">X</div>
+        <form action="" class="input_movies">
+          <h1 class="add_movie_header">Add Movie</h1>
+          <label for="movie_name">Name of Movie</label>
+          <input type="text" id="movie_name" />
+
+          <label for="movie_director">Movie Director</label>
+          <input type="text" id="movie_director" />
+
+          <label for="release_year">Release Year</label>
+          <input type="tel" inputmode="numeric" id="release_year" />
+
+          <button class="btn list_maker">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const radioBtn = document.querySelectorAll("input[name = 'chkr']");
+      const formOverlay = document.querySelector(".formoverlay");
+      const form = document.querySelector(".formcontainer");
+      let add_ExitBtn = document.querySelector(".toggle");
+      let buttt = document.querySelector(".list_maker");
+      let Selector = document.querySelector(".maincontainer");
+
+      add_ExitBtn.addEventListener("click", () => {
+        add_ExitBtn.classList.remove("active");
+        Selector.classList.remove("active");
+        form.classList.add("active");
+      });
+      
+      let selected = () => {
+        let sel = document.querySelector("input[name = 'chkr']:checked").value;
+        if (sel == "add") {
+          console.log("add")
+          add_ExitBtn.classList.add("active");
+          Selector.classList.add("active");
+          form.classList.remove("active");
+        }
+
+        if (sel == "view") {
+          console.log("view");
+        }
+
+        if (sel == "find") {
+          console.log("find");
+        }
+      };
+
+      radioBtn.forEach((radioBtns) => {
+        radioBtns.addEventListener("change", selected);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* outline: 1px solid red; */
+}
+
+.maincontainer.active{
+    display: none;
+}
+
+.maincontainer{
+    display: block;
+}
+
+.formcontainer.active{
+    display: none;
+}
+
+.formcontainer{
+    position: relative;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    /* max-width: 100dvw; */
+    /* width: 100vw; */
+    max-height: 100dvh;
+}
+
+.formoverlay{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.092);
+    /* opacity: 0.2; */
+    /* color: white; */
+    inset: 0.5rem;
+    display: grid;
+    place-content: center;
+    z-index: 99999997;
+}
+
+
+input{
+    width: 100%;
+    padding: 0.4rem 0;
+    border: 0;
+    box-sizing: border-box;
+    padding-left: 5px;
+    background-color: transparent;
+    /* text-align: center; */
+    border-bottom: 2px dashed black;
+    margin: 10px 0;
+    outline: 0;
+}
+
+label{
+    padding-left: 5px;
+}
+
+.toggle{
+    display: none;
+}
+
+.toggle.active{
+    position: absolute;
+    display: block;
+    top: 3rem;
+    right: 3rem;
+    border: 1px solid black;
+    padding: 5px;
+    font-family: sans-serif;
+}
+
+input:focus{
+    transition: border linear 20s;
+    border-bottom: 2px solid black;
+}
+
+form button{
+    width: 100%;
+    padding: 0.312rem 0;
+    margin-top: 5px;
+    border-radius: 0 0 4rem 4rem;
+    border: 1px solid grey;
+    background-color: rgb(59, 0, 59);
+    color: rgb(215, 205, 205);
+    transition: background-color 0.6s ease-in-out;
+}
+
+
+form button:hover{
+    color: rgb(59, 0, 59);
+    background-color: rgb(215, 205, 205);
+}
+
+form{
+    border: 1px solid grey;
+    border-radius: 0.35rem 0.35rem 2rem 2rem;
+    border-bottom: 0;
+    /* padding: 2rem; */
+}
+
+.add_movie_header{
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    padding-left: 5px;
+}
