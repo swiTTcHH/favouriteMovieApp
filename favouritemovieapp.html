@@ -55,7 +55,7 @@
     </div>
 
     <div class="findContainer">
-      <label for="movieName">Movie Name</label>
+      <div class="display"></div>
       <input
         type="text"
         placeholder="Enter movie name"
@@ -75,15 +75,19 @@
       const modalStuff = document.querySelector(".add_movie_to_list");
       const addBtn = document.querySelector(".addBtn");
       const listContainer = document.querySelector(".listcontainer");
+      const findContainer = document.querySelector(".findContainer");
 
       let movieList = [];
       addMovie.addEventListener("click", () => {
         modalContainer.classList.add("active");
         choices.classList.add("active");
         listContainer.classList.remove("active");
+        findContainer.classList.remove("active");
       });
 
-      let inpyt = document.querySelectorAll("input");
+      let inpyt = document.querySelectorAll(
+        "input:not([class = nameFieldFinder])"
+      );
       addBtn.addEventListener("click", () => {
         let valuess = Array.from(inpyt).reduce(
           (acc, inpyt) => ({ ...acc, [inpyt.id]: inpyt.value }),
@@ -102,6 +106,7 @@
 
       listMovie.addEventListener("click", () => {
         listContainer.classList.add("active");
+        findContainer.classList.remove("active");
         let contList = document.querySelector(".liststuff");
         if (movieList.length == 0) {
           contList.innerText = "There are no movies in the list";
@@ -113,15 +118,13 @@
               movie.movieName +
               " directed by " +
               movie.movieDirector +
-              "in " +
+              " in " +
               movie.releaseYear +
-              "<br />";
+              " <br />";
             sent.push(word);
 
             for (let i = 0; i < sent.length; i++) {
-              console.log(sent[i]);
               let sentence = sent.toString().split(",");
-              console.log(sentence);
               contList.innerHTML = sentence;
             }
           });
@@ -129,18 +132,31 @@
       });
 
       findMovie.addEventListener("click", () => {
-        let search = document.querySelector(".find");
-        search.addEventListener("click", () => {
-          movieList.forEach((movie, index) => {
-            console.log(movie);
-            let find = document.querySelector("nameFieldFinder");
-            if (movieList.includes(find.value)) {
-              console.log(movie);
-            }
-            else{
-              console.log("No matching name in directory");
-            }
-          });
+        listContainer.classList.remove("active");
+        findContainer.classList.add("active");
+
+        let textDisplay = document.querySelector(".display");
+        let searchBtn = document.querySelector(".find");
+        searchBtn.addEventListener("click", () => {
+          let findM = document.querySelector(".nameFieldFinder");
+          const Movieresult = movieList.find(({ movieName,movieDirector,releaseYear }) => movieName === findM.value);
+          // const Directorresult = movieList.find(({ movieDirector }) => movieDirector === findM.value);
+          // const yearresult = movieList.find(({ releaseYear }) => releaseYear === findM.value);
+          
+
+          console.log(Movieresult)
+          // console.log(Directorresult)
+          // console.log(yearresult)
+          if (Movieresult //|| Directorresult || yearresult
+          ){
+            // for (let i = 0; i < Movieresult.length; i++) {
+            //   let sentence = Movieresult.toString().split(",");
+            //   console.log(sentence);
+              textDisplay.innerHTML = "The movies with found are: <br />" + Movieresult.movieName + " by " + Movieresult.movieDirector + " in " + Movieresult.releaseYear
+            // }
+
+          }
+
         });
       });
     </script>
