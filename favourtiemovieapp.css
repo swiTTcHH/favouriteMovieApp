@@ -1,106 +1,57 @@
-*{
-    margin: 0;
-    padding: 0;
-    /* outline: 1px solid red; */
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding-top: 0;
 }
 
-.maincontainer.active{
-    display: none;
+.choices.active {
+  display: none;
 }
 
-.maincontainer{
-    display: block;
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  border: 2px dashed black;
+  padding: 10px;
+  font-size: 2ch;
+  cursor: default;
 }
 
-.formcontainer.active{
-    display: none;
+.toggle:hover{
+  box-shadow: inset 1px 0px 1px 1px black;
+  border: 0;
+
 }
 
-.formcontainer{
-    position: relative;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    /* max-width: 100dvw; */
-    /* width: 100vw; */
-    max-height: 100dvh;
+.addContainer {
+  display: none;
 }
 
-.formoverlay{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.092);
-    /* opacity: 0.2; */
-    /* color: white; */
-    inset: 0.5rem;
-    display: grid;
-    place-content: center;
-    z-index: 99999997;
+.addContainer.active {
+  position: relative;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: rgba(136, 136, 136, 0.5);
 }
 
-
-input{
-    width: 100%;
-    padding: 0.4rem 0;
-    border: 0;
-    box-sizing: border-box;
-    padding-left: 5px;
-    background-color: transparent;
-    /* text-align: center; */
-    border-bottom: 2px dashed black;
-    margin: 10px 0;
-    outline: 0;
+.add_movie_to_list {
+  max-width: 40%;
+  margin: 0 auto;
 }
 
-label{
-    padding-left: 5px;
+.add_movie_to_list input {
+  width: 100%;
 }
 
-.toggle{
-    display: none;
+.listcontainer{
+  display: none;
 }
 
-.toggle.active{
-    position: absolute;
-    display: block;
-    top: 3rem;
-    right: 3rem;
-    border: 1px solid black;
-    padding: 5px;
-    font-family: sans-serif;
-}
-
-input:focus{
-    transition: border linear 20s;
-    border-bottom: 2px solid black;
-}
-
-form button{
-    width: 100%;
-    padding: 0.312rem 0;
-    margin-top: 5px;
-    border-radius: 0 0 4rem 4rem;
-    border: 1px solid grey;
-    background-color: rgb(59, 0, 59);
-    color: rgb(215, 205, 205);
-    transition: background-color 0.6s ease-in-out;
-}
-
-
-form button:hover{
-    color: rgb(59, 0, 59);
-    background-color: rgb(215, 205, 205);
-}
-
-form{
-    border: 1px solid grey;
-    border-radius: 0.35rem 0.35rem 2rem 2rem;
-    border-bottom: 0;
-    /* padding: 2rem; */
-}
-
-.add_movie_header{
-    border-bottom: 1px solid grey;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    padding-left: 5px;
+.listcontainer.active{
+  display: block;
 }

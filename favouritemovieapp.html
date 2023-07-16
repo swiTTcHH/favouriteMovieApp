@@ -3,85 +3,145 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Favourite Movie App</title>
+    <title>Favourite Movie</title>
     <link rel="stylesheet" href="favourtiemovieapp.css" />
   </head>
   <body>
-    <div class="maincontainer">
-      <h1 for="add">What would you like to do</h1>
-      <div>
-        <label for="add">Add Movie</label>
-        <input type="radio" name="chkr" id="add" value="add" />
-        <label for="view">View Movies</label>
-        <input type="radio" name="chkr" id="view" value="view" />
-        <label for="find">Find a movie</label>
-        <input type="radio" name="chkr" id="find" value="find" />
+    <div class="main">
+      <div class="choices">
+        <h1 class="selection_title">What would you like to do?</h1>
+
+        <button class="add_movie">Add a Movie</button>
+        <button class="list_movie">List movies</button>
+        <button class="find_movie">Find a Movie</button>
+      </div>
+
+      <div class="listcontainer">
+        <p class="liststuff"></p>
       </div>
     </div>
 
-    <div class="formcontainer active">
-      <div class="formoverlay">
-        <div class="toggle">X</div>
-        <form action="" class="input_movies">
-          <h1 class="add_movie_header">Add Movie</h1>
-          <label for="movie_name">Name of Movie</label>
-          <input type="text" id="movie_name" />
+    <div class="addContainer">
+      <div class="toggle">X</div>
 
-          <label for="movie_director">Movie Director</label>
-          <input type="text" id="movie_director" />
+      <div class="add_movie_to_list">
+        <label for="movieName">Movie Name</label>
+        <input
+          type="text"
+          placeholder="Enter movie name"
+          class="nameField"
+          id="movieName"
+        />
 
-          <label for="release_year">Release Year</label>
-          <input type="tel" inputmode="numeric" id="release_year" />
+        <label for="movieDirector">Movie Director</label>
+        <input
+          type="text"
+          id="movieDirector"
+          class="directorField"
+          placeholder="Enter movie director"
+        />
 
-          <button class="btn list_maker">Submit</button>
-        </form>
+        <label for="releaseYear">Release Year</label>
+        <input
+          type="tel"
+          class="r_year"
+          id="releaseYear"
+          inputmode="numeric"
+          placeholder="Enter release year"
+        />
+
+        <button class="addBtn">Add to List</button>
       </div>
+    </div>
+
+    <div class="findContainer">
+      <label for="movieName">Movie Name</label>
+      <input
+        type="text"
+        placeholder="Enter movie name"
+        class="nameFieldFinder"
+        id="movieNameFinder"
+      />
+      <button class="find">Search</button>
     </div>
 
     <script>
-      const radioBtn = document.querySelectorAll("input[name = 'chkr']");
-      const formOverlay = document.querySelector(".formoverlay");
-      const form = document.querySelector(".formcontainer");
-      let add_ExitBtn = document.querySelector(".toggle");
-      let subBtn = document.querySelector(".list_maker");
-      let Selector = document.querySelector(".maincontainer");
-      const inp = document.querySelectorAll("input")
-      
-      add_ExitBtn.addEventListener("click", () => {
-        add_ExitBtn.classList.remove("active");
-        Selector.classList.remove("active");
-        form.classList.add("active");
+      let addMovie = document.querySelector(".add_movie");
+      let listMovie = document.querySelector(".list_movie");
+      const findMovie = document.querySelector(".find_movie");
+      const toggler = document.querySelector(".toggle");
+      const choices = document.querySelector(".choices");
+      const modalContainer = document.querySelector(".addContainer");
+      const modalStuff = document.querySelector(".add_movie_to_list");
+      const addBtn = document.querySelector(".addBtn");
+      const listContainer = document.querySelector(".listcontainer");
+
+      let movieList = [];
+      addMovie.addEventListener("click", () => {
+        modalContainer.classList.add("active");
+        choices.classList.add("active");
+        listContainer.classList.remove("active");
       });
-      
-      let lst = []
-      subBtn.addEventListener("click", () => {
-      inp.forEach((input) =>{
-        console.log(inp.value)
-      })
-      // console.log(inp.value)
-         // lst.append(inp.value)
-      })
-      
-      let selected = () => {
-        let sel = document.querySelector("input[name = 'chkr']:checked").value;
-        if (sel == "add") {
-          console.log("add")
-          add_ExitBtn.classList.add("active");
-          Selector.classList.add("active");
-          form.classList.remove("active");
-        }
 
-        if (sel == "view") {
-          console.log("view");
-        }
+      let inpyt = document.querySelectorAll("input");
+      addBtn.addEventListener("click", () => {
+        let valuess = Array.from(inpyt).reduce(
+          (acc, inpyt) => ({ ...acc, [inpyt.id]: inpyt.value }),
+          {}
+        );
+        movieList.push(valuess);
+        alert("Success!");
 
-        if (sel == "find") {
-          console.log("find");
-        }
-      };
+        let movies = new Set(movieList);
+      });
 
-      radioBtn.forEach((radioBtns) => {
-        radioBtns.addEventListener("change", selected);
+      toggler.addEventListener("click", () => {
+        modalContainer.classList.remove("active");
+        choices.classList.remove("active");
+      });
+
+      listMovie.addEventListener("click", () => {
+        listContainer.classList.add("active");
+        let contList = document.querySelector(".liststuff");
+        if (movieList.length == 0) {
+          contList.innerText = "There are no movies in the list";
+        } else {
+          let sent = [];
+          movieList.forEach((movie) => {
+            let word =
+              "Movie name: " +
+              movie.movieName +
+              " directed by " +
+              movie.movieDirector +
+              "in " +
+              movie.releaseYear +
+              "<br />";
+            sent.push(word);
+
+            for (let i = 0; i < sent.length; i++) {
+              console.log(sent[i]);
+              let sentence = sent.toString().split(",");
+              console.log(sentence);
+              contList.innerHTML = sentence;
+            }
+          });
+        }
+      });
+
+      findMovie.addEventListener("click", () => {
+        let search = document.querySelector(".find");
+        search.addEventListener("click", () => {
+          movieList.forEach((movie, index) => {
+            console.log(movie);
+            let find = document.querySelector("nameFieldFinder");
+            if (movieList.includes(find.value)) {
+              console.log(movie);
+            }
+            else{
+              console.log("No matching name in directory");
+            }
+          });
+        });
       });
     </script>
   </body>
