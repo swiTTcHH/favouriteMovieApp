@@ -78,7 +78,7 @@ findMovie.addEventListener("click", () => {
   searchBtn.addEventListener("click", () => {
     let findM = document.querySelector(".nameFieldFinder");
     const Movieresult = movieList.find(
-      ({ movieName, movieDirector, releaseYear }) => movieName === findM.value
+      ({ movieName}) => movieName === findM.value
     );
 
     if (
