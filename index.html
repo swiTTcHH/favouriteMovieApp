@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourite Movie</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="choices">
+        <h1 class="selection_title">What would you like to do?</h1>
+        <div class="btnContainer">
+          <button class="add_movie">Add a Movie</button>
+          <button class="list_movie">List movies</button>
+          <button class="find_movie">Find a Movie</button>
+        </div>
+      </div>
+
+      <div class="listcontainer">
+        <p class="liststuff"></p>
+      </div>
+    </div>
+
+    <div class="addContainer">
+      <div class="toggle">X</div>
+
+      <div class="add_movie_to_list">
+        <input
+          type="text"
+          placeholder="Enter movie name"
+          class="nameField"
+          id="movieName"
+        />
+
+        <input
+          type="text"
+          id="movieDirector"
+          class="directorField"
+          placeholder="Enter movie director"
+        />
+
+        <input
+          type="tel"
+          class="r_year"
+          id="releaseYear"
+          inputmode="numeric"
+          placeholder="Enter release year"
+        />
+
+        <button class="addBtn">Add to List</button>
+      </div>
+    </div>
+
+    <div class="findContainer">
+      <div class="display"></div>
+      <input
+        type="text"
+        placeholder="Enter movie name"
+        class="nameFieldFinder"
+        id="movieNameFinder"
+      />
+      <button class="find">Search</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
