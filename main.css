@@ -24,6 +24,14 @@
   margin: 2rem 0 0 2rem;
 }
 
+.attrib {
+  padding-left: 2rem;
+}
+
+.attrib a {
+  color: black;
+}
+
 .choices button {
   padding: 1rem;
   border-radius: 10px;
